@@ -56,7 +56,7 @@ module "blog_alb" {
 
   vpc_id             = module.blog_vpc.vpc_id
   subnets            = module.blog_vpc.public_subnets
-  security_groups    = [module.blog_sg.security_group_id]
+  security_groups    = module.blog_sg.security_group_id
 
   target_groups = [
     {
@@ -84,10 +84,10 @@ module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.17.2"
   
-  name   = "blog"
-  vpc_id = module.blog_vpc.vpc_id
+  name                = "blog"
+  vpc_id              = module.blog_vpc.vpc_id
   ingress_rules       = ["http-80-tcp", "https-443-tcp"]
   ingress_cidr_blocks = ["0.0.0.0/0"]
-  egress_rules       = ["all-all"]
-  egress_cidr_blocks = ["0.0.0.0/0"]
+  egress_rules        = ["all-all"]
+  egress_cidr_blocks  = ["0.0.0.0/0"]
 }
