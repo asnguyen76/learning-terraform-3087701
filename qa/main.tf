@@ -6,6 +6,6 @@ module "qa" {
         network_prefix = "10.1"
     }
 
-    asg min_size = 0
-    asg max_size = 0
+    asg min = 0
+    asg max = 0
 }
